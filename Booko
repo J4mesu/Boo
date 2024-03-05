@@ -1,0 +1,59 @@
+import { useState } from "react";
+import "./App.css";
+
+const phrases = [
+  "Nope",
+  "Wrong answer",
+  "Wrong answer again",
+  "Putang ina mo?",
+  "Ah, ok di na kita mahal",
+  "Kbye"
+];
+
+function App() {
+  const [noCount, setNoCount] = useState(0);
+  const [yesCount, setYesCount] = useState(false);
+  const yesButtonSize = noCount * 20 + 16;
+
+  function handleNoClick() {
+    setNoCount(noCount + 1);
+  }
+
+  function getNoButtonText() {
+    return phrases[Math.min(noCount, phrases.length - 1)];
+  }
+
+  return (
+    <div className="Boo-cointainer">
+      {yesCount ? (
+        <>
+          <img
+            alt="Panda kiss"
+            src="https://tenor.com/view/shy-sad-panda-gif-10868331"
+          />
+          <div className="text"> I love you too!</div>
+        </>
+      ) : (
+        <>
+          <img
+            alt="Panda kisses"
+            src="https://tenor.com/view/panda-love-goodnight-cute-kiss-gif-13765412"
+          />
+          <div> Do you love me?</div>
+          <button
+            className="yesButton"
+            onClick={handleNoClick}
+            style={{ fontSize: yesButtonSize }}
+          >
+            Yes
+          </button>
+          <button onClick={handleNoClick} className="noButton">
+            {getNoButtonText()}
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default App;
